@@ -42,9 +42,8 @@ class App extends React.Component {
               Pidgeon Tester
             </span>
             <span className="nav-button">
-              Bird List
+              Show me my Birds
             </span>
-
           </span>
           </div>
         </div>

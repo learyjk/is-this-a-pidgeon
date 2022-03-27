@@ -1,4 +1,4 @@
-# Is
+# Is this a Pidgeon?
 
 ## Info
 
@@ -24,6 +24,7 @@ Run `npm run server` to run the server.
 You should be able to see the starter web page.
 
 ## You can't run tests unless the machine learning model has loaded into the browser! Check the model load state under the navbar title to check this status.
+
 ### Many sites don't apply CORs headers to their images. Imgur is a good exception to this, and some sample images are below.
 
 Pidgeons: (The classification model may or may not classify these correctly)
@@ -44,7 +45,7 @@ Not a Pidgeon:
 - [] - Add functionality to the `IsPidgeon` component that will tell the user whether a given image is or is not a pidgeon using the output from the `isPidgeonTest` function that is provided.
 - [] - Create a list in the `BirdList` component that dynamically renders images that have been tested. (Use the data from sampleData.js for now).
 - [] - Allow users to switch between the two views using the `Show me my Birds` and `Is this a Pidgeon?` buttons in the navbar:
-  - [] - `Is this a Pidgeon?` displays the `IsPidgeon` component and allows users to get a prediction on whether an image is a pidgeon or not.
+  - [] - `Pidgeon Tester` displays the `IsPidgeon` component and allows users to get a prediction on whether an image is a pidgeon or not.
   - [] - `Show me my Birds` displays the `BirdList` component and displays a list of tested images.
 
 
