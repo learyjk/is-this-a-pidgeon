@@ -41,7 +41,7 @@ Not a Pidgeon:
 ### Level 1
 ### Load Prediction Data
 
-- [] - Refactor the `IsPidgeon` component to accept an image url. The image URL should automatically fill the `<img>` tag and the image should appear on the page when a URL is entered.
+- [] - Refactor the `IsPidgeon` component to accept an image url. The image URL should automatically fill the `<img>` tag's src property and the image should appear on the page when a URL is entered.
 - [] - Add functionality to the `IsPidgeon` component that will tell the user whether a given image is or is not a pidgeon using the output from the `isPidgeonTest` function that is provided.
 - [] - Create a list in the `BirdList` component that dynamically renders images that have been tested. (Use the data from sampleData.js for now).
 - [] - Allow users to switch between the two views using the `Show me my Birds` and `Is this a Pidgeon?` buttons in the navbar:
@@ -51,6 +51,7 @@ Not a Pidgeon:
 
 ### Level 2
 ### Save and Load Image Predictions to a Mongo Database
+
 - [] - Implement a `POST` route that allows users to save prediction test results to a Mongo database.
 - [] - Implement a `GET` route that allows users to load prediction test results from a Mongo database.
 - [] - Refactor the `BirdList` component so that it shows prediction test results that are loaded from the database.
@@ -67,7 +68,7 @@ Not a Pidgeon:
 ### Sort Prediction Tests
 
 - [] - Refactor your Mongoose schema to save the percentage confidence provided by the `isPidgeonTest` function and a `liked` status.
-- [] - Implement a second `PATCH` route that allows users to like a specific prediction test.
+- [] - Implement a second `PATCH` route that allows users to like a specific prediction test entry.
 - [] - Add a `I love this bird` button to prediction test entries that will set `liked` to true. Users should not be able to `like` prediction tests that are not pidgeons.
 - [] - Implement a sort on your `BirdList` that will display prediction tests that have a higher pidgeon confidence higher in the list.
 - [] - Implement a sort on your `BirdList` that will display prediction tests that are liked top of the list, regardless of pidgeon confidence.
