@@ -1,12 +1,61 @@
-import React from 'react';
+const mobilenet = require('@tensorflow-models/mobilenet');
+import React, {useRef} from 'react';
+import '@tensorflow/tfjs-backend-webgl';
+import ModelLoadState from './components/ModelLoadState.jsx';
+import IsPidgeon from './components/IsPidgeon.jsx';
+import BirdList from './components/BirdList.jsx';
 
-const App = () => {
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      model: null,
+      imgUrl: null
+    };
+    this.imgRef = React.createRef();
+  }
 
-  return (
-    <div>
-      <h1>Hellow World!</h1>
-    </div>
-  )
-};
+  componentDidMount() {
+    //This loads the machine learning model.
+    mobilenet.load()
+      .then(model => {
+        this.setState({model});
+      })
+  }
+
+  pageRouter(){
+
+  }
+
+  render () {
+    return (
+      <div>
+        <div className="navBar">
+          <div className="nav">
+          <span className="title">
+            <img src="https://i.imgur.com/eXPeS9m.gif" height='100px'/>
+            <span className="title-text">
+              <h3>Is this a Pidgeon?</h3>
+              <ModelLoadState model={this.state.model}/>
+            </span>
+            <span className="nav-button">
+              Pidgeon Tester
+            </span>
+            <span className="nav-button">
+              Bird List
+            </span>
+
+          </span>
+          </div>
+        </div>
+        <div className="content">
+          <IsPidgeon model={this.state.model}/>
+          <BirdList />
+        </div>
+      </div>
+
+    );
+  }
+}
 
 export default App;
