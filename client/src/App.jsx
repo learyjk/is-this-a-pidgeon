@@ -36,16 +36,22 @@ class App extends React.Component {
             <img src="https://i.imgur.com/eXPeS9m.gif" height='100px'/>
             <span className="title-text">
               <h3>Is this a Pidgeon?</h3>
-              <ModelLoadState model={this.state.model}/>
+            </span>
+            <span className="nav-button">
+            |
             </span>
             <span className="nav-button">
               Pidgeon Tester
             </span>
             <span className="nav-button">
-              Show me my Birds
+            |
+            </span>
+            <span className="nav-button">
+              Show Me My Birds
             </span>
           </span>
           </div>
+          <ModelLoadState model={this.state.model}/>
         </div>
         <div className="content">
           <IsPidgeon model={this.state.model}/>
