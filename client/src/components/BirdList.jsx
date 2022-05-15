@@ -1,31 +1,31 @@
 import React from 'react';
+import BirdListEntry from './BirdListEntry.jsx';
+import { sampleData } from '../sampleData.js';
 
 class BirdList extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
+      birdList: []
     };
   }
 
-  render(){
+  componentDidMount() {
+    //console.table(sampleData);
+    this.setState({ birdList: sampleData });
+  }
+
+  render() {
+
     return (
       <div>
         <h1>Pidgeon Tests</h1>
-          <div className="bird-list">
-            <div className="entry">
-            <div className="entry-image-wrapper">
-                <img className="entry-image" src="https://i.imgur.com/lHWTPUq.jpeg" alt="bird(?)"/>
-              </div>
-              <div className="entry-text">
-                <div className="entry-name">
-                  <h3>Pidgeon on Rock</h3>
-                </div>
-                <div className="entry-category">
-                  <h4>Is Pidgeon</h4>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="bird-list">
+          {this.state.birdList.map((bird, i) => {
+            let keyVal = bird.id + i.toString()
+            return <BirdListEntry key={keyVal} bird={bird} />
+          })}
+        </div>
       </div>
     )
   }
