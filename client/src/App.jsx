@@ -11,7 +11,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       model: null,
-      imgUrl: null
+      imgUrl: null,
+      page: 'test',
     };
     this.imgRef = React.createRef();
     this.handleImageUrl = this.handleImageUrl.bind(this);
@@ -29,8 +30,26 @@ class App extends React.Component {
     this.setState({ imgUrl })
   }
 
-  pageRouter() {
+  changePage(page) {
+    this.setState({ page })
+  }
 
+  pageRouter(page) {
+    if (page === 'test') {
+      return (
+        <div>
+          <ImageUrlForm handleImageUrl={this.handleImageUrl} />
+          <IsPidgeon model={this.state.model} imgUrl={this.state.imgUrl} />
+        </div>
+      );
+
+    } else if (page === 'list') {
+      return (
+        <div>
+          <BirdList />
+        </div>
+      );
+    }
   }
 
   render() {
@@ -46,13 +65,13 @@ class App extends React.Component {
               <span className="nav-button">
                 |
               </span>
-              <span className="nav-button">
+              <span onClick={() => this.changePage('test')} className="nav-button">
                 Pidgeon Tester
               </span>
               <span className="nav-button">
                 |
               </span>
-              <span className="nav-button">
+              <span onClick={() => this.changePage('list')} className="nav-button">
                 Show Me My Birds
               </span>
             </span>
@@ -60,9 +79,8 @@ class App extends React.Component {
           <ModelLoadState model={this.state.model} />
         </div>
         <div className="content">
-          <ImageUrlForm handleImageUrl={this.handleImageUrl} />
-          <IsPidgeon model={this.state.model} imgUrl={this.state.imgUrl} />
-          <BirdList />
+          {this.pageRouter(this.state.page)}
+
         </div>
       </div>
 
