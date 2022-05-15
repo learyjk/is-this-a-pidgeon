@@ -11,7 +11,7 @@ connect();
 const testSchema = new mongoose.Schema({
   name: String,
   url: String,
-  isPideon: Boolean
+  isPidgeon: Boolean
 });
 
 const Test = mongoose.model('Test', testSchema);
@@ -25,8 +25,21 @@ const getAllFromDb = async () => {
   return await Test.find();
 }
 
+const editInDb = async (test) => {
+  let _id = test._id;
+  let fieldName = Object.keys(test)[1];
+  let value = test[fieldName];
+  return await Test.updateOne({ _id }, { [fieldName]: value });
+}
+
+const deleteFromDb = async (_idObj) => {
+  return await Test.deleteOne(_idObj);
+}
+
 module.exports = {
   connect,
   saveToDb,
   getAllFromDb,
+  editInDb,
+  deleteFromDb,
 }

@@ -12,7 +12,6 @@ class IsPidgeon extends React.Component {
   }
 
   isPidgeonTest(image) {
-    console.log(this.props.imgUrl);
     //This function tests an image to see if it is a pidgeon.
     this.props.model.classify(image.current)
       .then(async (predictions) => {

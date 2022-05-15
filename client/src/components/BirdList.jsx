@@ -10,6 +10,7 @@ class BirdList extends React.Component {
     this.state = {
       birdList: []
     };
+    this.getAllTests = this.getAllTests.bind(this);
   }
 
   async getAllTests() {
@@ -33,7 +34,7 @@ class BirdList extends React.Component {
         <h1>Pidgeon Tests</h1>
         <div className="bird-list">
           {this.state.birdList.map((bird, i) => {
-            return <BirdListEntry key={bird._id} bird={bird} />
+            return <BirdListEntry key={bird._id} bird={bird} getAllTests={this.getAllTests} />
           })}
         </div>
       </div>

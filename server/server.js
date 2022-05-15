@@ -1,8 +1,6 @@
 const express = require('express');
 const db = require('./db.js');
 
-console.log(db)
-
 const app = express();
 const port = 3000;
 
@@ -24,6 +22,21 @@ app.post('/api/tests', (req, res) => {
   console.log(req.method, ' request with body ', req.body);
   // req.body expect {name, url, isPidgeon}
   db.saveToDb(req.body);
-  console.log('saved!');
+  res.send();
+});
+
+app.patch('/api/tests', (req, res) => {
+  console.log(req.method, ' request with body ', req.body);
+  // req.body expect {name, url, isPidgeon}
+  db.editInDb(req.body);
+  console.log('patch complete in server')
+  res.send();
+});
+
+app.delete('/api/tests', (req, res) => {
+  console.log(req.method, ' request with body ', req.body);
+  // req.body expect {name, url, isPidgeon}
+  db.deleteFromDb(req.body);
+  console.log('delete complete in server')
   res.send();
 });
