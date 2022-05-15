@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const connect = () => {
-  mongoose.connect('')
-  .then(()=>{console.log('Connected to MongoDB')})
-  .catch(err => {console.log('Error connecting to MongoDB:', err.message)});
+  mongoose.connect('mongodb://127.0.0.1:27017')
+    .then(() => { console.log('Connected to MongoDB') })
+    .catch(err => { console.log('Error connecting to MongoDB:', err.message) });
 }
 
 connect();
@@ -16,7 +16,17 @@ const testSchema = new mongoose.Schema({
 
 const Test = mongoose.model('Test', testSchema);
 
+const saveToDb = async (test) => {
+  const testToAdd = new Test(test);
+  await testToAdd.save();
+}
+
+const getAllFromDb = async () => {
+  return await Test.find();
+}
+
 module.exports = {
   connect,
-  Test
+  saveToDb,
+  getAllFromDb,
 }

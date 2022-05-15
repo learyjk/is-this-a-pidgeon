@@ -1,4 +1,7 @@
 const express = require('express');
+const db = require('./db.js');
+
+console.log(db)
 
 const app = express();
 const port = 3000;
@@ -10,6 +13,17 @@ app.listen(port, (req, res) => {
   console.log(`Listening on port ${port}`);
 });
 
-app.get('/api/tests', (req, res) => {
+app.get('/api/tests', async (req, res) => {
+  console.log(req.method);
+  let response = await db.getAllFromDb();
+  console.log(response);
+  res.json(response);
+});
 
+app.post('/api/tests', (req, res) => {
+  console.log(req.method, ' request with body ', req.body);
+  // req.body expect {name, url, isPidgeon}
+  db.saveToDb(req.body);
+  console.log('saved!');
+  res.send();
 });

@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class IsPidgeon extends React.Component {
   constructor(props) {
@@ -11,13 +12,25 @@ class IsPidgeon extends React.Component {
   }
 
   isPidgeonTest(image) {
+    console.log(this.props.imgUrl);
     //This function tests an image to see if it is a pidgeon.
     this.props.model.classify(image.current)
-      .then(predictions => {
-        alert(predictions[0].className === 'partridge' ? 'This is a Pidgeon' : 'This is not a Pidgeon');
-        alert(predictions[0].className === 'partridge' ? 'Pidgeon Confidence: ' + predictions[0].probability : '');
+      .then(async (predictions) => {
+        let isPidgeon = predictions[0].className === 'partridge';
+        alert(isPidgeon ? 'This is a Pidgeon' : 'This is not a Pidgeon');
+        alert(isPidgeon ? 'Pidgeon Confidence: ' + predictions[0].probability : '');
         //Yes I know a partridge is not a pidgeon,
         //but I keep feeding the model Pidgeons and they keep coming out as partridges???
+        let data = {
+          name: 'New Pidgeon Test',
+          url: this.props.imgUrl,
+          isPidgeon: isPidgeon,
+        }
+        await axios({
+          method: 'post',
+          url: '/api/tests',
+          data: data,
+        })
       })
       .catch(err => {
         console.log(err);
